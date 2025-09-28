@@ -319,10 +319,6 @@ La aplicación consume estos endpoints del backend:
 
 **Tecnologías dominadas:** Next.js, TypeScript, Redux Toolkit, NestJS, PostgreSQL, AWS, Tailwind CSS, React Hook Form, Zod
 
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
 ## 🆘 Soporte
 
 Si tienes problemas o preguntas:
