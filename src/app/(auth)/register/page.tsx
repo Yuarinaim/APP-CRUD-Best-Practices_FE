@@ -35,7 +35,6 @@ export default function RegisterPage() {
   const onSubmit = async (data: RegisterFormData) => {
     setIsLoading(true);
     try {
-      console.log("Form submitted:", data);
       // Aquí iría la lógica de registro
       await createUser({
         name: data.name,

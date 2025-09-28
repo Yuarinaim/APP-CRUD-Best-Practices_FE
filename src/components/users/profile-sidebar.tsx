@@ -14,7 +14,8 @@ export function ProfileSidebar({ isOpen, onClose }: ProfileSidebarProps) {
   const { logout, user } = useAuth();
 
   // Función para obtener las iniciales del nombre
-  const getInitials = (name: string) => {
+  const getInitials = (name: string | undefined) => {
+    if (!name) return "U";
     return name
       .split(" ")
       .map((word) => word.charAt(0))

@@ -12,7 +12,8 @@ export function Navbar() {
   const { user } = useAuth();
 
   // Función para obtener las iniciales del nombre
-  const getInitials = (name: string) => {
+  const getInitials = (name: string | undefined) => {
+    if (!name) return "U";
     return name
       .split(" ")
       .map((word) => word.charAt(0))

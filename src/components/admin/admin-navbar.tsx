@@ -17,13 +17,12 @@ interface AdminNavbarProps {
 export function AdminNavbar({ title, breadcrumb, children }: AdminNavbarProps) {
   const { theme, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    fetch("http://localhost:3001/api/users/all")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:3001/api/users/all")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //     });
+  // }, []);
 
   return (
     <header className="bg-white px-6 py-4 shadow-sm dark:bg-gray-900">

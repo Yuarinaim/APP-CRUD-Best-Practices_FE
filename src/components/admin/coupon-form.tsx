@@ -113,7 +113,6 @@ export function CouponForm({ mode, initialData, couponId }: CouponFormProps) {
         state: coupon.state === "canjeado" ? "activo" : (coupon.state as "activo" | "inactivo"),
       };
 
-      console.log("🔄 Reseteando formulario con:", newValues);
       reset(newValues);
     }
   }, [couponData, mode, reset]);
@@ -215,13 +214,7 @@ export function CouponForm({ mode, initialData, couponId }: CouponFormProps) {
 
         {/* Form Content */}
         <div className="p-6">
-          <form
-            onSubmit={handleSubmit(onSubmit, (errors) => {
-              console.log("❌ Errores de validación:", errors);
-              console.log("📝 Valores del formulario:", control._formValues);
-            })}
-            className="space-y-6"
-          >
+          <form onSubmit={handleSubmit(onSubmit, (errors) => {})} className="space-y-6">
             {/* Código del cupón */}
             <div>
               <Controller
