@@ -291,6 +291,7 @@ export function CouponForm({ mode, initialData, couponId }: CouponFormProps) {
                   <FormInput
                     {...field}
                     type="date"
+                    control={control}
                     disabled={isLoading}
                     error={fieldState.error}
                     label="Fecha de expiración"
