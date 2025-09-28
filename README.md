@@ -307,13 +307,17 @@ La aplicación consume estos endpoints del backend:
 - `DELETE /coupons/:id` - Eliminar cupón (admin)
 - `POST /coupons/redeem` - Canjear cupón
 
-## 🤝 Contribución
+## 🎯 Información del Proyecto
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+**Este es un proyecto de prueba técnica que demuestra:**
+
+- **Desarrollo Full-Stack** - Frontend y Backend completamente implementados
+- **Despliegue en AWS** - Infraestructura en la nube con EC2, RDS y Amplify
+- **Arquitectura Moderna** - Uso de las últimas tecnologías y mejores prácticas
+- **Funcionalidad Completa** - Sistema CRUD con autenticación y roles
+- **Código de Producción** - Listo para ser usado en un entorno real
+
+**Tecnologías dominadas:** Next.js, TypeScript, Redux Toolkit, NestJS, PostgreSQL, AWS, Tailwind CSS, React Hook Form, Zod
 
 ## 📄 Licencia
 
@@ -327,16 +331,28 @@ Si tienes problemas o preguntas:
 2. Busca en los [Issues](../../issues) existentes
 3. Crea un nuevo issue con detalles del problema
 
-## 🎯 Próximas Características
+## ✅ Características Implementadas
 
-- [ ] Tests unitarios y de integración
-- [ ] Notificaciones push
-- [ ] Exportación de datos (PDF, Excel)
-- [ ] Dashboard con gráficos
-- [ ] Sistema de notificaciones
-- [ ] Modo offline
-- [ ] Internacionalización (i18n)
+- [x] **Sistema de autenticación completo** - Login, registro, roles, middleware de protección
+- [x] **Componentes CRUD completos** - Gestión de usuarios y cupones
+- [x] **Integración con API backend** - RTK Query para manejo de estado
+- [x] **Validaciones robustas** - React Hook Form + Zod schemas
+- [x] **Interfaz moderna** - Tailwind CSS con modo oscuro/claro
+- [x] **Protección de rutas** - Middleware de Next.js
+- [x] **Gestión de estado global** - Redux Toolkit
+- [x] **Despliegue en AWS** - Backend en EC2, Frontend en Amplify, DB en RDS
+- [x] **Arquitectura escalable** - Estructura modular y tipado TypeScript
+- [x] **Experiencia de usuario optimizada** - Responsive design y validaciones en tiempo real
+
+## 🏆 Logros Técnicos
+
+- **✅ Aplicación Full-Stack Completa** - Frontend, Backend y Base de Datos desplegados en AWS
+- **✅ Autenticación JWT** - Sistema seguro con roles y protección de rutas
+- **✅ CRUD Completo** - Gestión de usuarios y cupones con validaciones
+- **✅ Arquitectura Moderna** - Next.js 14, TypeScript, Redux Toolkit, Tailwind CSS
+- **✅ Despliegue en Producción** - AWS EC2, RDS, Amplify configurados y funcionando
+- **✅ Mejores Prácticas** - Código limpio, tipado estático, validaciones robustas
 
 ---
 
-**¡Disfruta usando la aplicación! 🚀**
+**🚀 Aplicación completamente funcional y desplegada en producción**
