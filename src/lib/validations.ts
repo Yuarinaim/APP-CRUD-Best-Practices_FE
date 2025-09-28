@@ -74,9 +74,83 @@ export const changePasswordSchema = z
     path: ["confirmNewPassword"],
   });
 
+// Esquema para usuario de la API (coincide con la entidad User del backend)
+export const userApiSchema = z.object({
+  name: z
+    .string()
+    .min(2, "El nombre debe tener al menos 2 caracteres")
+    .max(100, "El nombre no puede exceder 100 caracteres"),
+  email: z
+    .string()
+    .email("Debe ser un email válido")
+    .min(1, "El email es requerido")
+    .max(255, "El email no puede exceder 255 caracteres"),
+  password: z
+    .string()
+    .min(6, "La contraseña debe tener al menos 6 caracteres")
+    .max(255, "La contraseña no puede exceder 255 caracteres"),
+  role: z
+    .string()
+    .min(1, "El rol es requerido")
+    .max(255, "El rol no puede exceder 255 caracteres")
+    .default("user"),
+  isActive: z.boolean().default(true),
+});
+
+// Esquema para crear usuario con confirmación de contraseña
+export const createUserSchema = z
+  .object({
+    name: z
+      .string()
+      .min(2, "El nombre debe tener al menos 2 caracteres")
+      .max(100, "El nombre no puede exceder 100 caracteres"),
+    email: z
+      .string()
+      .email("Debe ser un email válido")
+      .min(1, "El email es requerido")
+      .max(255, "El email no puede exceder 255 caracteres"),
+    password: z
+      .string()
+      .min(6, "La contraseña debe tener al menos 6 caracteres")
+      .max(255, "La contraseña no puede exceder 255 caracteres"),
+    confirmPassword: z.string().min(1, "Confirma tu contraseña"),
+    role: z
+      .string()
+      .min(1, "El rol es requerido")
+      .max(255, "El rol no puede exceder 255 caracteres")
+      .default("user"),
+    isActive: z.boolean().default(true),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Las contraseñas no coinciden",
+    path: ["confirmPassword"],
+  });
+
+// Esquema para actualizar usuario (campos opcionales)
+export const updateUserSchema = z.object({
+  name: z
+    .string()
+    .min(2, "El nombre debe tener al menos 2 caracteres")
+    .max(100, "El nombre no puede exceder 100 caracteres")
+    .optional(),
+  email: z
+    .string()
+    .email("Debe ser un email válido")
+    .max(255, "El email no puede exceder 255 caracteres")
+    .optional(),
+  role: z
+    .string()
+    .max(255, "El rol no puede exceder 255 caracteres")
+    .optional(),
+  isActive: z.boolean().optional(),
+});
+
 // Tipos inferidos de los esquemas
 export type RegisterFormData = z.infer<typeof registerSchema>;
 export type LoginFormData = z.infer<typeof loginSchema>;
 export type UserFormData = z.infer<typeof userSchema>;
 export type ProfileFormData = z.infer<typeof profileSchema>;
 export type ChangePasswordFormData = z.infer<typeof changePasswordSchema>;
+export type UserApiData = z.infer<typeof userApiSchema>;
+export type CreateUserFormData = z.infer<typeof createUserSchema>;
+export type UpdateUserFormData = z.infer<typeof updateUserSchema>;

@@ -4,12 +4,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "@/contexts/theme-context";
 
+import home from "../../../public/assets/icons/navigation/home.svg";
+import coupon from "../../../public/assets/icons/navigation/coupon.svg";
+import Image from "next/image";
+import moon from "../../../public/assets/icons/actions/moon.svg";
+import roles from "../../../public/assets/icons/navigation/roles.svg";
+
 const navigation = [
-  { name: "Inicio", href: "/dashboard", icon: "🏠" },
-  { name: "Mi cuenta", href: "/dashboard/account", icon: "👤" },
-  { name: "Mis beneficios", href: "/dashboard/benefits", icon: "🎁" },
-  { name: "Mis cupones", href: "/dashboard/coupons", icon: "🎫" },
-  { name: "Recomendá", href: "/dashboard/referrals", icon: "💝" },
+  { name: "Inicio", href: "/", icon: home },
+  { name: "Cupones", href: "/coupons", icon: coupon },
+  { name: "Panel de administración", href: "/admin", icon: roles },
+  { name: "Canjear cupones", href: "/redeem", icon: coupon },
 ];
 
 export function Sidebar() {
@@ -20,7 +25,7 @@ export function Sidebar() {
     <div className="flex h-full w-64 flex-col bg-blue-900 dark:bg-blue-950">
       {/* Logo */}
       <div className="flex h-16 items-center justify-center border-b border-blue-800 dark:border-blue-900">
-        <h1 className="text-2xl font-bold text-white">LOGO</h1>
+        <h1 className="text-2xl font-bold text-white">25Watts</h1>
       </div>
 
       {/* Navigation */}
@@ -38,7 +43,7 @@ export function Sidebar() {
                   : "text-blue-100 hover:bg-blue-800 hover:text-white dark:text-blue-200 dark:hover:bg-blue-900",
               ].join(" ")}
             >
-              <span className="text-lg">{item.icon}</span>
+              <Image src={item.icon} alt={item.name} width={20} height={20} className="h-5 w-5" />
               {item.name}
             </Link>
           );
@@ -46,17 +51,21 @@ export function Sidebar() {
       </nav>
 
       {/* Dark mode toggle */}
-      <div className="border-t border-blue-800 p-4 dark:border-blue-900">
+      <div className="flex flex-col items-center justify-center border-t border-blue-800 p-4 dark:border-blue-900">
         <div className="mb-2">
           <span className="text-sm text-blue-100 dark:text-blue-200">Darkmode</span>
         </div>
         <button
           onClick={toggleTheme}
-          className="flex h-8 w-16 items-center rounded-full bg-white p-1 transition-colors dark:bg-gray-600"
+          className="flex h-8 w-16 items-center rounded-full bg-primary-600 p-1 transition-colors dark:bg-gray-600"
         >
-          <div
+          <Image
+            src={moon}
+            alt="theme toggle"
+            width={20}
+            height={20}
             className={[
-              `h-6 w-6 rounded-full bg-gray-400 transition-transform dark:bg-white`,
+              `h-6 w-6 rounded-full transition-transform`,
               theme === "dark" ? "translate-x-8" : "translate-x-0",
             ].join(" ")}
           />

@@ -9,20 +9,20 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/auth/login", label: "Iniciar Sesión", key: "login" },
-    { href: "/auth/register", label: "Registrarse", key: "register" },
-    {
-      href: "/auth/change-password",
-      label: "Cambiar Contraseña",
-      key: "change-password",
-    },
+    { href: "/login", label: "Iniciar Sesión", key: "login" },
+    { href: "/register", label: "Registrarse", key: "register" },
+    // {
+    //   href: "/auth/change-password",
+    //   label: "Cambiar Contraseña",
+    //   key: "change-password",
+    // },
   ];
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
       {/* Header */}
       <header className="bg-white dark:bg-gray-800 px-6 py-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
-        <div className="text-xl font-bold text-gray-800 dark:text-white">LOGO</div>
+        <div className="text-xl font-bold text-gray-800 dark:text-white">25Watts</div>
         <div className="flex items-center gap-3">
           <ThemeToggle />
           {/* Language selector */}
@@ -45,30 +45,6 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           </button>
         </div>
       </header>
-
-      {/* Navigation Bar */}
-      <nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="flex space-x-8">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.key}
-                  href={item.href}
-                  className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
-                    isActive
-                      ? "border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400"
-                      : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </nav>
 
       {/* Main Content */}
       <main className="flex items-center justify-center min-h-[calc(100vh-140px)] px-4">

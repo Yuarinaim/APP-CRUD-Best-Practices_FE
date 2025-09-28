@@ -3,7 +3,11 @@
 import type React from "react";
 
 import { useTheme } from "@/contexts/theme-context";
+import Image from "next/image";
 
+import moon from "../../../public/assets/icons/actions/moon.svg";
+import notification from "../../../public/assets/icons/actions/notification.svg";
+import { useEffect } from "react";
 interface AdminNavbarProps {
   title: string;
   breadcrumb?: string;
@@ -12,6 +16,14 @@ interface AdminNavbarProps {
 
 export function AdminNavbar({ title, breadcrumb, children }: AdminNavbarProps) {
   const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    fetch("http://localhost:3001/api/users/all")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
 
   return (
     <header className="bg-white px-6 py-4 shadow-sm dark:bg-gray-900">
@@ -28,20 +40,8 @@ export function AdminNavbar({ title, breadcrumb, children }: AdminNavbarProps) {
 
           {/* Notification bell */}
           <button className="relative rounded-full p-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800">
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 17h5l-5 5-5-5h5V3h0z"
-              />
-            </svg>
-            <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-red-500"></span>
+            <Image src={notification} alt="notification bell" width={20} height={20} />
+            {/* <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-red-500"></span> */}
           </button>
 
           {/* Dark mode toggle */}
@@ -49,7 +49,7 @@ export function AdminNavbar({ title, breadcrumb, children }: AdminNavbarProps) {
             onClick={toggleTheme}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
           >
-            {theme === "dark" ? "☀️" : "🌙"}
+            {theme === "dark" ? <Image src={moon} alt="moon" width={20} height={20} /> : "🌙"}
           </button>
         </div>
       </div>

@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/theme-context";
 import { Suspense } from "react";
+import { Providers } from "@/redux/providers";
+import { AuthProvider } from "@/components/providers/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <body className={inter.className}>
         <ThemeProvider>
-          <Suspense>{children}</Suspense>
+          <Providers>
+            <AuthProvider>
+              <Suspense>{children}</Suspense>
+            </AuthProvider>
+          </Providers>
         </ThemeProvider>
       </body>
     </html>

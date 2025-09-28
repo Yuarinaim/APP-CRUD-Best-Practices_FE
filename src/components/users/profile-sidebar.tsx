@@ -1,17 +1,31 @@
 "use client";
 
+import { useAuth } from "@/hooks/useAuth";
+import Image from "next/image";
+import user from "../../../public/assets/icons/navigation/user-icon.svg";
+import logoutIcon from "../../../public/assets/icons/actions/log-out.svg";
+
 interface ProfileSidebarProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
 export function ProfileSidebar({ isOpen, onClose }: ProfileSidebarProps) {
+  const { logout, user } = useAuth();
+
+  // Función para obtener las iniciales del nombre
+  const getInitials = (name: string) => {
+    return name
+      .split(" ")
+      .map((word) => word.charAt(0))
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+  };
   return (
     <>
       {/* Overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={onClose} />
-      )}
+      {isOpen && <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={onClose} />}
 
       {/* Sidebar */}
       <div
@@ -26,12 +40,7 @@ export function ProfileSidebar({ isOpen, onClose }: ProfileSidebarProps) {
             onClick={onClose}
             className="rounded-full p-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
           >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -46,99 +55,41 @@ export function ProfileSidebar({ isOpen, onClose }: ProfileSidebarProps) {
         <div className="p-6">
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
-              <img
-                src="/diverse-group-profile.png"
-                alt="Profile"
-                className="h-20 w-20 rounded-full object-cover"
-              />
-              <button className="absolute bottom-0 right-0 rounded-full bg-blue-600 p-1 text-white hover:bg-blue-700">
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                  />
-                </svg>
-              </button>
+              <div className="h-20 w-20 rounded-full bg-blue-600 text-white font-bold text-2xl flex items-center justify-center">
+                {user ? getInitials(user.name) : "U"}
+              </div>
             </div>
 
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Juan Morales
+              {user?.name || "Usuario"}
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">jmorales@gmail.com</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">DNI: 44785698</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {user?.email || "email@ejemplo.com"}
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Rol: {user?.role === "admin" ? "Administrador" : "Usuario"}
+            </p>
           </div>
         </div>
 
         {/* Menu options */}
         <div className="border-t px-4 py-2 dark:border-gray-700">
-          <button className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800">
+          <button
+            onClick={logout}
+            className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-left bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-700 dark:text-gray-300 dark:hover:bg-blue-800"
+          >
             <div className="flex items-center gap-3">
-              <svg
+              <Image
+                src={logoutIcon}
+                alt="Cerrar sesión"
+                width={20}
+                height={20}
                 className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
-              <span>Editar perfil</span>
-            </div>
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
               />
-            </svg>
-          </button>
-
-          <button className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800">
-            <div className="flex items-center gap-3">
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
               <span>Cerrar sesión</span>
             </div>
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>

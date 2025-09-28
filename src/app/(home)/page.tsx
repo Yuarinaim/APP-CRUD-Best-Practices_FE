@@ -1,8 +1,16 @@
+"use client";
+
+import { useAuth } from "@/hooks/useAuth";
+
 export default function DashboardPage() {
+  const { user } = useAuth();
+
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Bienvenido, Juan Morales</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Bienvenido, {user?.name || "Usuario"}
+        </h1>
         <p className="text-gray-600 dark:text-gray-400">
           Aquí se mostrará un resumen de tu actividad, saldo y beneficios destacados.
         </p>
@@ -15,7 +23,12 @@ export default function DashboardPage() {
             <div className="text-sm opacity-80 mb-1">MIS PUNTOS</div>
             <div className="text-3xl font-bold flex items-center gap-2">
               100 puntos
-              <svg className="h-5 w-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="h-5 w-5 opacity-60"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -29,7 +42,12 @@ export default function DashboardPage() {
             <div className="text-sm opacity-80 mb-1">MI NIVEL</div>
             <div className="text-3xl font-bold flex items-center gap-2">
               Nivel 1
-              <svg className="h-5 w-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="h-5 w-5 opacity-60"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -44,13 +62,17 @@ export default function DashboardPage() {
 
       {/* Benefits section */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">BENEFICIOS Y EXPERIENCIAS</h2>
-        <button className="text-blue-600 hover:text-blue-700 text-sm font-medium dark:text-blue-400">Ver todo</button>
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+          BENEFICIOS Y EXPERIENCIAS
+        </h2>
+        <button className="text-blue-600 hover:text-blue-700 text-sm font-medium dark:text-blue-400">
+          Ver todo
+        </button>
       </div>
 
       <div className="text-center py-12 text-gray-500 dark:text-gray-400">
         <p>No hay beneficios disponibles en este momento.</p>
       </div>
     </div>
-  )
+  );
 }
